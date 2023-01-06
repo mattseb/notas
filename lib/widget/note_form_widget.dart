@@ -80,24 +80,27 @@ class NoteFormWidget extends StatelessWidget {
         onChanged: onChangedTitle,
       );
 
-  Widget buildCategoria() => DropdownButton<String>(
-        value: categoria,
-        icon: Icon(Icons.arrow_downward),
-        iconSize: 24,
-        elevation: 16,
-        style: TextStyle(color: Colors.deepPurple),
-        underline: Container(
-          height: 2,
-          color: Colors.deepPurpleAccent,
+  Widget buildCategoria() => Container(
+        width: 300,
+        child: DropdownButton<String>(
+          value: "No hay",
+          icon: Icon(Icons.arrow_downward),
+          iconSize: 24,
+          elevation: 16,
+          style: TextStyle(color: Colors.green),
+          underline: Container(
+            height: 2,
+            color: Colors.green,
+          ),
+          onChanged: onChangedCategoria,
+          items: <String>['Urgente', 'Media', 'Normal', "No hay"]
+              .map<DropdownMenuItem<String>>((String valor) {
+            return DropdownMenuItem<String>(
+              value: valor,
+              child: Text(valor),
+            );
+          }).toList(),
         ),
-        onChanged: onChangedCategoria,
-        items: <String>['Urgente', 'Media', 'Normal', "No hay"]
-            .map<DropdownMenuItem<String>>((String valor) {
-          return DropdownMenuItem<String>(
-            value: valor,
-            child: Text(valor),
-          );
-        }).toList(),
       );
 
   Widget buildDescription() => TextFormField(
